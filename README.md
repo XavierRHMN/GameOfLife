@@ -11,7 +11,7 @@ This project is an implementation of Conway's Game of Life, a cellular automaton
 - Clear the grid at any time
 
 ## Installation
-To run this project, you need to have Make installed on your system.
+To run this project you will need to enter the following commands into command prompt or another terminal. 
 
 ### Steps:
 1. Clone the repository:
