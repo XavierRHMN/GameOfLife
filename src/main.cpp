@@ -84,7 +84,7 @@ int main(int argc, char* argv[]) {
                 leftMouseButtonPressed = false;
             }
 
-            if (e.type == SDL_MOUSEMOTION && rightMouseButtonPressed && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
+            if (rightMouseButtonPressed && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
                 int mouseX = e.motion.x;
                 int mouseY = e.motion.y;
 
@@ -104,7 +104,7 @@ int main(int argc, char* argv[]) {
             }
 
             // Handle mouse motion
-            if (e.type == SDL_MOUSEMOTION && leftMouseButtonPressed && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
+            if (leftMouseButtonPressed && !ImGui::IsWindowHovered(ImGuiHoveredFlags_AnyWindow)) {
                 int mouseX = e.motion.x;
                 int mouseY = e.motion.y;
 
