@@ -24,5 +24,8 @@ bool getCellState(int x, int y);
 void setCellState(int x, int y, bool state);
 void copyGrid();
 void clearGrid();
+void getTempGrid();
+void saveGrid();;
+void loadGrid();
 
 #endif // GAME_OF_LIFE_H

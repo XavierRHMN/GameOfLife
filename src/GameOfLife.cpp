@@ -1,5 +1,6 @@
 #include "GameOfLife.h"
 #include <random>
+#include <fstream>
 
 // Grid representation
 std::vector<std::vector<bool>> grid(GRID_WIDTH, std::vector<bool>(GRID_HEIGHT, false));
@@ -100,3 +101,32 @@ void setCellState(int x, int y, bool state) {
 std::vector<std::vector<bool>>& getGrid() {
     return grid;
 }
+
+
+    // Function to save the current state of the grid to a file
+    void saveGrid() {
+        auto& grid = getGrid();
+        std::ofstream file("grid.txt");
+
+        for (int x = 0; x < GRID_WIDTH; ++x) {
+            for (int y = 0; y < GRID_HEIGHT; ++y) {
+                file << grid[x][y] << ' ';
+            }
+            file << '\n';
+        }
+    }
+
+    void loadGrid() {
+        auto& grid = getGrid();
+        std::ifstream file("grid.txt");
+        int temp;
+
+        for (int x = 0; x < GRID_WIDTH; ++x) {
+            for (int y = 0; y < GRID_HEIGHT; ++y) {
+                file >> temp;
+                grid[x][y] = temp != 0;
+            }
+        }
+    }
+
+

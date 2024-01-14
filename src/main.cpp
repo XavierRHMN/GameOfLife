@@ -4,6 +4,7 @@
 #include "GameOfLife.h"
 #include <SDL.h>
 #include <iostream>
+#include <fstream>
 
 const int windowWidth = GRID_WIDTH * CELL_SIZE;
 const int windowHeight = GRID_HEIGHT * CELL_SIZE;
@@ -186,6 +187,15 @@ int main(int argc, char* argv[]) {
             ImGui::SetNextWindowSize(ImVec2(400, 400)); // Desired initial size
             isWindowSizeSet = true;
         }
+
+        if (ImGui::Button("Save Grid")) {
+            saveGrid();
+        }
+
+        if (ImGui::Button("Load Grid")) {
+            loadGrid();
+        }
+
         ImGui::SliderInt("Cursor Size", &cursorSize, 1, 10);
         ImGui::SliderInt("Speed (ms)", &updateInterval, 1000, 1);
         
