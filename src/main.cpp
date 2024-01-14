@@ -21,6 +21,9 @@ bool rightMouseButtonPressed = false;
 bool simulationJustResumed = false;
 int hoverX = -1, hoverY = -1;  // Variables to store the hover cell coordinates
 const int CONTROL_PANEL_WIDTH = 300;
+const int HELP_WINDOW_WIDTH = 400;
+const int HELP_WINDOW_HEIGHT = 400;
+bool showHelpWindow = false;
 
 // Main function
 int main(int argc, char* argv[]) {
@@ -192,6 +195,29 @@ int main(int argc, char* argv[]) {
 
         if (ImGui::Button("Load Grid")) {
             loadGrid();
+        }
+
+        if (ImGui::Button("Help")) {
+            showHelpWindow = true;
+        }
+
+        if (showHelpWindow) {
+            ImGui::SetNextWindowSize(ImVec2(HELP_WINDOW_WIDTH, HELP_WINDOW_HEIGHT)); 
+            ImGui::Begin("Help", &showHelpWindow, ImGuiWindowFlags_NoResize);
+            ImGui::TextWrapped("The Game of Life, also known simply "
+                        "as Life, is a cellular automaton devised "
+                        "by the British mathematician John Horton Conway in 1970. "
+                        "The game is played on an infinite two-dimensional square grid, but in our case it is finite grid, of cells"
+                        "each of which is in one of two possible states, alive or dead. The rules are simple:");
+            ImGui::Spacing();
+            ImGui::TextWrapped("Birth: A dead cell with exactly three live neighbors becomes a live cell.");
+            ImGui::Spacing();
+            ImGui::TextWrapped("Survival: A live cell with two or three live neighbors stays alive.");
+            ImGui::Spacing();
+            ImGui::TextWrapped("Death:");
+            ImGui::TextWrapped("   Overpopulation: A live cell with more than three live neighbors dies.");
+            ImGui::TextWrapped("   Loneliness: A live cell with fewer than two live neighbors also dies.");
+            ImGui::End();
         }
 
         ImGui::SliderInt("Cursor Size", &cursorSize, 1, 10);
