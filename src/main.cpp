@@ -204,11 +204,9 @@ int main(int argc, char* argv[]) {
         if (showHelpWindow) {
             ImGui::SetNextWindowSize(ImVec2(HELP_WINDOW_WIDTH, HELP_WINDOW_HEIGHT)); 
             ImGui::Begin("Help", &showHelpWindow, ImGuiWindowFlags_NoResize);
-            ImGui::TextWrapped("The Game of Life, also known simply "
-                        "as Life, is a cellular automaton devised "
-                        "by the British mathematician John Horton Conway in 1970. "
-                        "The game is played on an infinite two-dimensional square grid, but in our case it is finite grid, of cells"
-                        "each of which is in one of two possible states, alive or dead. The rules are simple:");
+            ImGui::TextWrapped("The Game of Life, also known simply as Life, is a cellular automaton devised "
+                        "by the British mathematician John Horton Conway in 1970. The game is played on an infinite two-dimensional square grid,"
+                        "but in our case it is finite grid, of cells each of which is in one of two possible states, alive or dead. The rules are simple:");
             ImGui::Spacing();
             ImGui::TextWrapped("Birth: A dead cell with exactly three live neighbors becomes a live cell.");
             ImGui::Spacing();
