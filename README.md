@@ -11,7 +11,7 @@ This project is an implementation of Conway's Game of Life, a cellular automaton
 - Clear the grid at any time
 
 ## Installation
-To run this project you will need to enter the following commands into command prompt or another terminal. 
+Navigate to the build folder and run project.exe or if you want to compile and build this project yourself you can do the following (Git and Make need to be installed);
 
 ### Steps:
 1. Clone the repository:
@@ -24,11 +24,15 @@ To run this project you will need to enter the following commands into command p
    ```
 3. Compile the project (ensure you have g++ and the necessary libraries installed):
    ```
-   g++ -o gameoflife src/*.cpp -Iinclude -Llib -lSDL2 -lSDL2main -lImGui 
+   make
    ```
-4. Run the compiled application:
+4. Navigate to the build directory:
    ```
-   ./gameoflife
+   cd build
+   ```
+5. Run the compiled application:
+   ```
+   ./project
    ```
 
 ## Usage
