@@ -9,7 +9,7 @@
 const int windowWidth = GRID_WIDTH * CELL_SIZE;
 const int windowHeight = GRID_HEIGHT * CELL_SIZE;
 bool isPaused = false;  // Variable to control the simulation state
-bool running = true;
+bool running = true; // init variable for main while loop
 bool isWindowSizeSet = false;
 Uint32 lastUpdateTime = 0; // Store the last update time
 int updateInterval = 100; // Time in milliseconds between
@@ -24,7 +24,6 @@ const int CONTROL_PANEL_WIDTH = 300;
 
 // Main function
 int main(int argc, char* argv[]) {
-
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         return -1;
@@ -174,16 +173,16 @@ int main(int argc, char* argv[]) {
         ImGui::Text("Game of Life Simulation");
 
         if (ImGui::Button("Clear Board")) {
-            clearGrid();  // Clear the grid when the button is clicked
+            clearGrid();  
         }
         if (ImGui::Button("Restart Simulation")) {
-            initializeGrid();  // Restart the Game of Life simulation
+            initializeGrid();  
         }
         if (ImGui::Button(isPaused ? "Resume Simulation" : "Pause Simulation")) {
             isPaused = !isPaused;
         }
         if (!isWindowSizeSet) {
-            ImGui::SetNextWindowSize(ImVec2(400, 400)); // Desired initial size
+            ImGui::SetNextWindowSize(ImVec2(400, 400)); 
             isWindowSizeSet = true;
         }
 
@@ -196,7 +195,7 @@ int main(int argc, char* argv[]) {
         }
 
         ImGui::SliderInt("Cursor Size", &cursorSize, 1, 10);
-        ImGui::SliderInt("Speed (ms)", &updateInterval, 1000, 1);
+        ImGui::SliderInt("Update (ms)", &updateInterval, 1000, 1);
         
         // Add more controls as needed
         ImGui::End();
