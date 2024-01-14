@@ -3,6 +3,7 @@
 #include <imgui_impl_sdlrenderer2.h>
 #include "GameOfLife.h"
 #include <SDL.h>
+#include <iostream>
 
 const int windowWidth = GRID_WIDTH * CELL_SIZE;
 const int windowHeight = GRID_HEIGHT * CELL_SIZE;
@@ -17,6 +18,8 @@ int mouseX, mouseY;
 bool leftMouseButtonPressed = false;
 bool rightMouseButtonPressed = false; 
 bool simulationJustResumed = false;
+int hoverX = -1, hoverY = -1;  // Variables to store the hover cell coordinates
+const int CONTROL_PANEL_WIDTH = 300;
 
 // Main function
 int main(int argc, char* argv[]) {
@@ -30,11 +33,11 @@ int main(int argc, char* argv[]) {
         "Game of Life",
         SDL_WINDOWPOS_CENTERED,
         SDL_WINDOWPOS_CENTERED,
-        windowWidth,
-        windowHeight,
-        SDL_WINDOW_SHOWN
-    );
+        GRID_WIDTH * CELL_SIZE + CONTROL_PANEL_WIDTH,
+        GRID_HEIGHT * CELL_SIZE, 
+        SDL_WINDOW_SHOWN);
 
+    
     if (!window_ptr) {
         SDL_Quit();
         return -1;
@@ -58,9 +61,23 @@ int main(int argc, char* argv[]) {
     // Initialize Game of Life
     initializeGrid();
 
+    int hoverX = -1, hoverY = -1;
     while(running) {
         SDL_Event e;
         while(SDL_PollEvent(&e)) {
+            
+            if (e.type == SDL_MOUSEMOTION) {
+                std::cout << "Hovering over: " << hoverX << ", " << hoverY << std::endl;
+                hoverX = e.motion.x / CELL_SIZE;
+                hoverY = e.motion.y / CELL_SIZE;
+
+                // Optional: Check if the coordinates are within the grid bounds
+                if (hoverX >= GRID_WIDTH || hoverY >= GRID_HEIGHT) {
+                    hoverX = -1;
+                    hoverY = -1;
+                }
+            }
+
             if (e.type == SDL_QUIT) {
                 running = false;
             }
@@ -149,9 +166,11 @@ int main(int argc, char* argv[]) {
         ImGui_ImplSDL2_NewFrame(window_ptr);
         ImGui::NewFrame();
 
-        // ImGui toolbar for control
+        // ImGui control panel
+        ImGui::SetNextWindowPos(ImVec2(GRID_WIDTH * CELL_SIZE, 0)); // Set the position of the window
+        ImGui::SetNextWindowSize(ImVec2(CONTROL_PANEL_WIDTH, GRID_HEIGHT * CELL_SIZE)); // Set the size of the window
         
-        ImGui::Begin("Control Panel");
+        ImGui::Begin("Control Panel", NULL, ImGuiWindowFlags_NoResize);
         ImGui::Text("Game of Life Simulation");
 
         if (ImGui::Button("Clear Board")) {
@@ -194,19 +213,30 @@ int main(int argc, char* argv[]) {
 void renderGrid(SDL_Renderer* renderer) {
     auto& grid = getGrid();  // Access the grid from GameOfLife
 
+    int mouseX, mouseY;
+    SDL_GetMouseState(&mouseX, &mouseY);
+
+    // Convert the mouse position to grid coordinates
+    int hoverX = mouseX / CELL_SIZE;
+    int hoverY = mouseY / CELL_SIZE;
+
     for (int x = 0; x < GRID_WIDTH; ++x) {
         for (int y = 0; y < GRID_HEIGHT; ++y) {
             SDL_Rect cell;
-            cell.x = x * 10;  // Assuming each cell is 10x10 pixels
-            cell.y = y * 10;
-            cell.w = 10;
-            cell.h = 10;
+            cell.x = x * CELL_SIZE;
+            cell.y = y * CELL_SIZE;
+            cell.w = CELL_SIZE;
+            cell.h = CELL_SIZE;
 
-            if (grid[x][y]) { // Alive cells
-                SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // White color
-            } else { // Dead cells
-                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Black color
+            // Set color based on cell state and hover state
+            if (x >= hoverX && x < hoverX + cursorSize && y >= hoverY && y < hoverY + cursorSize && grid[x][y] == 0) {
+                SDL_SetRenderDrawColor(renderer, 200, 200, 200, 255); // Highlight color
+            } else if (grid[x][y]) {
+                SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255); // Alive color
+            } else {
+                SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Dead color
             }
+
             SDL_RenderFillRect(renderer, &cell);
         }
     }
