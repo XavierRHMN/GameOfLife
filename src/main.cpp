@@ -68,7 +68,6 @@ int main(int argc, char* argv[]) {
         while(SDL_PollEvent(&e)) {
             
             if (e.type == SDL_MOUSEMOTION) {
-                std::cout << "Hovering over: " << hoverX << ", " << hoverY << std::endl;
                 hoverX = e.motion.x / CELL_SIZE;
                 hoverY = e.motion.y / CELL_SIZE;
 
