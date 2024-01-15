@@ -19,6 +19,8 @@ std::vector<std::vector<bool>>& getGrid();
 void initializeGrid();
 void updateGrid(bool useTemp = false);
 void renderGrid(SDL_Renderer* renderer);
+void renderImGuiWidgets(SDL_Renderer* renderer);
+void cleanUp(SDL_Renderer* renderer, SDL_Window* window);
 void toggleCell(int x, int y);
 bool getCellState(int x, int y);
 void setCellState(int x, int y, bool state);
