@@ -87,12 +87,6 @@ int main(int argc, char* argv[]) {
             if (e.type == SDL_MOUSEMOTION) {
                 hoverX = e.motion.x / CELL_SIZE;
                 hoverY = e.motion.y / CELL_SIZE;
-
-                // Optional: Check if the coordinates are within the grid bounds
-                if (hoverX >= GRID_WIDTH || hoverY >= GRID_HEIGHT) {
-                    hoverX = -1;
-                    hoverY = -1;
-                }
             }
 
             if (e.type == SDL_QUIT) {
