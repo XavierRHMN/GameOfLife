@@ -5,10 +5,9 @@
 This project is an implementation of Conway's Game of Life, a cellular automaton devised by the British mathematician John Horton Conway in 1970. The game is a zero-player game, meaning that its evolution is determined by its initial state, requiring no further input. Users can create an initial configuration and observe how it evolves.
 
 ## Features
-- Interactive grid to draw and erase cells
-- Control over the simulation speed
-- Pause/resume functionality
-- Clear the grid at any time
+- Create and destroy your own cell colonies using left click and right click for drawing and deleting
+- Pause, resume, change simulation speed, change cell cursor size, change colour of alive and dead cells
+- Window rendering using SDL2 and control panel rendering was built with ImGui
 
 ## Installation
 Navigate to the build folder and run project.exe or if you want to compile and build this project yourself you can do the following (Git and Make need to be installed);
