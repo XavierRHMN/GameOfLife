@@ -6,7 +6,9 @@ This project is an implementation of Conway's Game of Life, a cellular automaton
 
 ## Features
 - Create and destroy your own cell colonies using left click and right click for drawing and deleting
-- Pause, resume, change simulation speed, change cell cursor size, change colour of alive and dead cells
+- Pause or resume simulation or clear grid 
+- Change simulation speed, change cell cursor size, change  cell colours
+- Save and load grid
 - Window rendering using SDL2 and control panel rendering was built with ImGui
 
 ## Installation
