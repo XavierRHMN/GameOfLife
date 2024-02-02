@@ -2,7 +2,7 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run",
+            "name": "Run Without Debugging",
             "type": "cppvsdbg",
             "request": "launch",
             "program": "${workspaceFolder}/build/project", // Path to the output of your build process
@@ -10,7 +10,7 @@
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}", // Working directory for the program
             "externalConsole": false,
-            "preLaunchTask": "build" // Task to run before launching the program
+            "preLaunchTask": "build", // Task to run before launching the program
         }
     ]
 }
