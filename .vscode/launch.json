@@ -1,0 +1,16 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/project", // Path to the output of your build process
+            "args": [], // Command line arguments to pass to the program
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}", // Working directory for the program
+            "externalConsole": false,
+            "preLaunchTask": "build" // Task to run before launching the program
+        }
+    ]
+}

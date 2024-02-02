@@ -11,6 +11,8 @@ const int WINDOW_WIDTH = GRID_WIDTH * CELL_SIZE;
 const int WINDOW_HEIGHT = GRID_HEIGHT * CELL_SIZE;
 const int CONTROL_PANEL_HEIGHT = WINDOW_HEIGHT;
 const int CONTROL_PANEL_WIDTH = 500;
+const int CONTROL_PANEL_X = 500;
+const int CONTROL_PANEL_Y = 0;
 const int HELP_WINDOW_WIDTH = 400;
 const int HELP_WINDOW_HEIGHT = 400;
 
@@ -227,6 +229,7 @@ void renderGrid(SDL_Renderer* renderer) {
 
 int cellSize = CELL_SIZE;
 void renderImGuiWidgets(SDL_Renderer* renderer) {
+    ImGui::SetNextWindowPos(ImVec2(CONTROL_PANEL_X, CONTROL_PANEL_Y));
     ImGui::SetNextWindowSize(ImVec2(CONTROL_PANEL_WIDTH, CONTROL_PANEL_HEIGHT)); // replace newWidth and newHeight with the desired values
     ImGui::Begin("Control Panel", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove);
 
