@@ -1,6 +1,3 @@
-imgui/*.h linguist-vendored
-imgui/*.cpp linguist-vendored
-include/*.h linguist-vendored
-include/*.cpp linguist-vendored
-lib/*.h linguist-vendored
-lib/*.cpp linguist-vendored
+imgui/** linguist-vendored
+include/** linguist-vendored
+lib/** linguist-vendored
