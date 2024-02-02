@@ -1,3 +1,6 @@
-imgui/* linguist-documentation
-include/* linguist-documentation
-lib/* linguist-documentation
+imgui/*.h linguist-vendored
+imgui/*.cpp linguist-vendored
+include/*.h linguist-vendored
+include/*.cpp linguist-vendored
+lib/*.h linguist-vendored
+lib/*.cpp linguist-vendored
